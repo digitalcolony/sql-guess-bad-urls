@@ -1,0 +1,20 @@
+IF OBJECT_ID('prcBadLinkSuggest') IS NOT NULL
+DROP PROCEDURE prcBadLinkSuggest
+GO
+CREATE PROCEDURE prcBadLinkSuggest
+    @errorURL VARCHAR(300)
+AS
+DECLARE @goodURL AS VARCHAR(200)
+DECLARE @title AS VARCHAR(100)
+ 
+SELECT TOP 1 G.url AS GoodURL, G.title
+FROM (
+SELECT url, title FROM Content
+UNION
+SELECT contributorURL AS URL, contributorName AS Title
+FROM Contributors
+UNION
+SELECT sectionURL AS URL, sectionName AS Title
+FROM Sections
+) G
+ORDER BY dbo.udfCompareURLs(G.url, @errorURL) DESC

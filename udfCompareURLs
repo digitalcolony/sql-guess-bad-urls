@@ -1,0 +1,29 @@
+IF OBJECT_ID('udfCompareURLs') IS NOT NULL
+    DROP FUNCTION udfCompareURLs
+GO
+CREATE FUNCTION udfCompareURLs(
+    @goodURL    VARCHAR(200),
+    @errorURL    VARCHAR(200)
+    )
+RETURNS INT
+AS
+BEGIN
+    DECLARE @iCount AS INT
+    DECLARE @score    AS INT
+    DECLARE @eChar    AS CHAR
+    DECLARE @gChar    AS CHAR
+    DECLARE @urlLength    AS INT
+
+    SET @iCount = 1
+    SET @score = 0
+    SET @urlLength = LEN(@errorURL)
+    WHILE (@iCount < @urlLength)
+    BEGIN
+        SELECT @eChar = SUBSTRING(@errorURL,@iCount,1)
+        SELECT @gChar = SUBSTRING(@goodURL,@iCount,1)
+        IF @eChar = @gChar
+            SET @score = @score + 1
+        SET @iCount = @iCount + 1
+    END
+    RETURN @Score
+END

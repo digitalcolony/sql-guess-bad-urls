@@ -19,18 +19,18 @@ The other common element was that the link was correct, but somehow extra letter
 Sometimes when a URL is hand copied, a zero becomes an “O” or a one becomes an “l”.
 
 ## Example
-Here is an example of a valid link to INeedCoffee and 3 examples of how things could go wrong. www.ineedcoffee.com/07/aeropress/
+Here is an example of a valid link to INeedCoffee and 3 examples of how things could go wrong. `www.ineedcoffee.com/07/aeropress/`
 
-1. Truncated: http://www.ineedcoffee.com/07/aeropres (trailing “s” and slash is missing from request)
+1. Truncated: `www.ineedcoffee.com/07/aeropres` (trailing “s” and slash is missing from request)
 
-2. Extra Characters: http://www.ineedcoffee.com/07/aeropress/ target= (when the url href doesn’t get closed properly, the link sent includes the characters after the link until the quote is closed)
+2. Extra Characters: `www.ineedcoffee.com/07/aeropress/ target=` (when the url href doesn’t get closed properly, the link sent includes the characters after the link until the quote is closed)
 
-3. Mistyped Characters: http://www.ineedcoffee.com/07/aer0press/ (in this example, an “o” is typed as a zero)
+3. Mistyped Characters: `www.ineedcoffee.com/07/aer0press/` (in this example, an “o” is typed as a zero)
 
 
 ## One Stored Procedure and One User Defined Function
 
-The first thing I noticed was that it was rare for the garbage characters to appear between the base domain name (www.ineedcoffee.com) and the article URL (/07/aeropress/). My idea was to compile a full list of valid URLs on my site and then perform a character by character comparison. For every character that matches, I would score a point. The URL with the most points would likely be the correct URL.
+The first thing I noticed was that it was rare for the garbage characters to appear between the base domain name (`www.ineedcoffee.com`) and the article URL (/07/aeropress/). My idea was to compile a full list of valid URLs on my site and then perform a character by character comparison. For every character that matches, I would score a point. The URL with the most points would likely be the correct URL.
 
 ### The Stored Procedure
 
